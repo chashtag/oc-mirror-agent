@@ -1,0 +1,29 @@
+apiVersion: v1
+baseDomain: test.example.com
+
+compute:
+- architecture: amd64 
+  hyperthreading: Enabled
+  name: worker
+  replicas: 0
+controlPlane:
+  architecture: amd64
+  hyperthreading: Enabled
+  name: master
+  replicas: 1
+metadata:
+  name: sno-cluster 
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 192.168.0.0/16
+  networkType: OVNKubernetes 
+  serviceNetwork:
+  - 172.30.0.0/16
+platform:
+  none: {}
+pullSecret: XXX
+#pullSecret: '{"auths":{"quay.io":{"auth":"AAAA"}}}'
+#sshKey: '<ssh_pub_key>' 
