@@ -161,7 +161,6 @@ COPY fake_build/ /data/
 RUN --mount=type=secret,id=pull_secret,mode=0644,target=/home/builder/.docker/config.json sed "s/XXX/'\`cat /home/builder/.docker/config.json | python -m json.tool | tr -d '\n'\`'/g" -i /data/install-config.yaml && \
     OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE=$RELEASE_IMAGE openshift-install agent create image --log-level debug 
 EOF
-
 podman push ${DEST_REGISTRY}/${AGENT_BUILDER}
 
 rm -rf $TMPMIRRORFILE
@@ -179,11 +178,7 @@ dnf install --nodocs -y butane python3-pip \
   	&& rm -rf /var/cache/yum
 
 EOF
-
-
-
-
-
+podman push ${DEST_REGISTRY}/extra_tools
 
 
 #D=$(date +"%d-%m-%Y-%H-%M-%S")
