@@ -27,3 +27,10 @@ platform:
 pullSecret: XXX
 #pullSecret: '{"auths":{"quay.io":{"auth":"AAAA"}}}'
 #sshKey: '<ssh_pub_key>' 
+imageContentSources: 
+- mirrors:
+  - harbor.home/oc/openshift/release-images
+  source: quay.io/openshift-release-dev/ocp-release
+- mirrors:
+  - harbor.home/oc/openshift/release
+  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
